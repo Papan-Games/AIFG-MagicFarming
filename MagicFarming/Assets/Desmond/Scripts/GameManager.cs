@@ -35,12 +35,17 @@ public class GameManager : MonoBehaviour
         {
             if(CheckDistance(landTarget.transform))
             {
-                //Open plant seed panel;
+                landTarget.GetComponent<SoilManager>().ShowSeedMenu();
+            }
+            else
+            {
+                landTarget.GetComponent<SoilManager>().HideSeedMenu();
+                landTarget = null;
             }
         }
     }
 
-    bool CheckDistance(Transform target)
+    public bool CheckDistance(Transform target)
     {
         float dist;
 
