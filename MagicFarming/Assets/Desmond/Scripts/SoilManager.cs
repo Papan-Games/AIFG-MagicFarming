@@ -7,6 +7,11 @@ public class SoilManager : MonoBehaviour
 {
     public enum Seeds {Peach, GlowingMushroom, Rafflesia};
 
+    [HeaderAttribute("Stats")]
+    public float health = 100;
+    private bool isDead;
+
+    [HeaderAttribute("Components")]
     public GameObject seedMenu;
     public bool isPlanting;
     public CountdownTimer timer;
@@ -27,6 +32,7 @@ public class SoilManager : MonoBehaviour
     void Start()
     {
         harvestState = false;
+        isDead = false;
         HideSeedMenu();
     }
 
@@ -53,6 +59,25 @@ public class SoilManager : MonoBehaviour
     public void HideSeedMenu()
     {
         seedMenu.SetActive(false);
+    }
+
+    public void TakeDamage(float damageAmt)
+    {
+        if(health > 0)
+        {
+            health -= damageAmt;
+            if(health <= 0)
+            {
+                isDead = true;
+            }
+        }
+    }
+    
+    public Seeds HarvestPlant()
+    {
+        isPlanting = false;
+        harvestState = false;
+        return growingSeed;
     }
 
 
@@ -104,11 +129,5 @@ public class SoilManager : MonoBehaviour
         return harvestState;
     }
 
-    public Seeds HarvestPlant()
-    {
-        isPlanting = false;
-        harvestState = false;
-        return growingSeed;
-    }
 
 }
