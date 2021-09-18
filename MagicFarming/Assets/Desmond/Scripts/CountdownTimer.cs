@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CountdownTimer : MonoBehaviour
 {
     public Image timerUI;
-
+    public SoilManager s_Manager;
 
     [HeaderAttribute("Display Only")]
     public float timeRemaining;
@@ -35,6 +35,7 @@ public class CountdownTimer : MonoBehaviour
                 timeRemaining = 0.0f;
                 timeIsRunning = false;
                 timerUI.fillAmount = 0.0f;
+                s_Manager.ChangeToHarvestState();
             }
         }
     }

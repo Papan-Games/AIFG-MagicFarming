@@ -5,12 +5,28 @@ using UnityEngine.UI;
 
 public class SoilManager : MonoBehaviour
 {
+    public enum Seeds {Peach, GlowingMushroom, Rafflesia};
+
     public GameObject seedMenu;
     public bool isPlanting;
+    public CountdownTimer timer;
+    public Seeds growingSeed;
+
+    [HeaderAttribute("Peach Variables")]
+    public float p_growTime;
+
+    [HeaderAttribute("Glowing Mushroom Variables")]
+    public float m_growTime;
+    
+    [HeaderAttribute("Rafflesia Variables")]
+    public float r_growTime;
+
+    private bool harvestState;
 
     // Start is called before the first frame update
     void Start()
     {
+        harvestState = false;
         HideSeedMenu();
     }
 
@@ -28,12 +44,59 @@ public class SoilManager : MonoBehaviour
 
     public void ShowSeedMenu()
     {
-        seedMenu.SetActive(true);
+        if(!isPlanting)
+        {
+            seedMenu.SetActive(true);
+        }
     }
 
     public void HideSeedMenu()
     {
         seedMenu.SetActive(false);
+    }
+
+
+    // FOR BUTTONS
+    public void PlantPeach()
+    {
+        if(!isPlanting)
+        {
+            isPlanting = true;
+            timer.StartTimer(p_growTime);
+            growingSeed = Seeds.Peach;
+            GameManager.instance.landTarget = null;
+            HideSeedMenu();
+        }
+    }
+
+    public void PlantMushroom()
+    {
+        if(!isPlanting)
+        {
+            isPlanting = true;
+            timer.StartTimer(m_growTime);
+            growingSeed = Seeds.GlowingMushroom;
+            GameManager.instance.landTarget = null;
+            HideSeedMenu();
+        }
+    }
+
+    public void PlantRafflesia()
+    {
+        if(!isPlanting)
+        {
+            isPlanting = true;
+            timer.StartTimer(r_growTime);
+            growingSeed = Seeds.Rafflesia;
+            GameManager.instance.landTarget = null;
+            HideSeedMenu();
+        }
+    }
+
+    public void ChangeToHarvestState()
+    {
+        Debug.Log("Harvest");
+        harvestState = true;
     }
 
 }
