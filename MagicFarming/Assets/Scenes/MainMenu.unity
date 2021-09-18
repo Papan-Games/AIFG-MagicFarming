@@ -2185,7 +2185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1407aef4cce35442955ac8a95619d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeSlider: {fileID: 0}
+  volumeSlider: {fileID: 1067702799}
   soundVolume: 0
 --- !u!4 &855849950 stripped
 Transform:
@@ -3272,6 +3272,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1067702799 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114206718525562532, guid: 8448d0c7b98ba48029866b3004f038b8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1936429066}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1069801328
 GameObject:
   m_ObjectHideFlags: 0

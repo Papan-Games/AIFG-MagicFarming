@@ -10,7 +10,6 @@ public class SoundSettingManager : MonoBehaviour
     public Slider volumeSlider;
     public static bool isSoundOn;
 
-    public float soundVolume;
     string newVolume = "VOLUME_SLIDER";
 
 
