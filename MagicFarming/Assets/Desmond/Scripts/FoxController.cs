@@ -42,7 +42,7 @@ public class FoxController : MonoBehaviour
     }
 
     [ContextMenu("FindTarget")]
-    void FindTargetToPursue()
+    public void FindTargetToPursue()
     {
         for(int i = 0; i < EnemyManager.instance.targetList.Count; i++)
         {
