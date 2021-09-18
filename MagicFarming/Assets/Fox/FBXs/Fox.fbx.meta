@@ -1,9 +1,17 @@
 fileFormatVersion: 2
-guid: a87e5c72005736b47855be1dab92eb25
+guid: 91e4778cdfb185d4d9bfe81556dc4333
 ModelImporter:
   serializedVersion: 19301
-  internalIDToNameTable: []
-  externalObjects: {}
+  internalIDToNameTable:
+  - first:
+      74: 1827226128182048838
+    second: Take 001
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 08 - Default
+    second: {fileID: 2100000, guid: 4ad23863efbf001479d8ebd01ef00654, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -82,7 +90,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 0.1
-    rootMotionBoneName: 
+    rootMotionBoneName: FoxTransform
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
@@ -90,7 +98,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
