@@ -95,8 +95,20 @@ public class SoilManager : MonoBehaviour
 
     public void ChangeToHarvestState()
     {
-        Debug.Log("Harvest");
         harvestState = true;
+        // Show the Grown Plant
+    }
+
+    public bool GetHarvestState()
+    {
+        return harvestState;
+    }
+
+    public Seeds HarvestPlant()
+    {
+        isPlanting = false;
+        harvestState = false;
+        return growingSeed;
     }
 
 }

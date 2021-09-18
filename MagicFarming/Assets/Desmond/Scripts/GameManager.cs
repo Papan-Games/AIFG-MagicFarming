@@ -5,10 +5,14 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance {get; private set;}
-    
+
     public GameObject player;
     public GameObject landTarget;
     public float satisfiedRange = 1.0f;
+
+    public List<SoilManager.Seeds> harvestObjective;
+
+    private SoilManager s_Manager;
 
     void Awake() 
     {
@@ -35,7 +39,16 @@ public class GameManager : MonoBehaviour
         {
             if(CheckDistance(landTarget.transform))
             {
-                landTarget.GetComponent<SoilManager>().ShowSeedMenu();
+                s_Manager = landTarget.GetComponent<SoilManager>();
+                if(!s_Manager.isPlanting)
+                {
+                    s_Manager.ShowSeedMenu();
+                }
+                else if(s_Manager.GetHarvestState())
+                {
+                    harvestObjective.Remove(s_Manager.HarvestPlant());
+                    landTarget = null;
+                }
             }
             else
             {
