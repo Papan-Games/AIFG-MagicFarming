@@ -53,25 +53,34 @@ public class EnemyManager : MonoBehaviour
             {
                 timeRemaining = phase1Interval;
             }
+            // else if(phase2)
+            // else if(phase3)
         }
     }
 
     void SpawnEnemy()
     {
-        int randomEnemy = Random.Range(0,2);
+        int randomEnemy = Random.Range(0,3);
         int randomSpawnPoint = Random.Range(0, spawnPoints.Count);
         GameObject temp;
 
-        if(randomEnemy == 0)
+        if(randomEnemy == 0) // spawn fox
         {
             temp = Instantiate(foxPrefab, spawnPoints[randomSpawnPoint].position, Quaternion.identity);
-            temp.GetComponent<FoxController>().FindTargetToPursue();
+            //temp.GetComponent<EnemyController>().FindTargetToPursue();
+        }
+        else if (randomEnemy == 1) // spawn monkey
+        {
+            temp = Instantiate(monkeyPrefab, spawnPoints[randomSpawnPoint].position, Quaternion.identity);
+            //temp.GetComponent<EnemyController>().FindTargetToPursue();
         }
         else
         {
-            temp = Instantiate(monkeyPrefab, spawnPoints[randomSpawnPoint].position, Quaternion.identity);
-            // Monkey Controller
-            temp.GetComponent<FoxController>().FindTargetToPursue();
+            // CHANGE TO SPAWN BUTTERFLY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            temp = Instantiate(foxPrefab, spawnPoints[randomSpawnPoint].position, Quaternion.identity);
+            //temp.GetComponent<EnemyController>().FindTargetToPursue();
         }
+
+        PetManager.instance.AddToTargetList(temp.transform);
     }
 }
