@@ -1,0 +1,11 @@
+# Blender MTL File: 'pot.blend'
+# Material Count: 1
+
+newmtl broun
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.034988 0.010962 0.007307
+Ks 0.099035 0.024086 0.014778
+Ni 1.000000
+d 1.000000
+illum 2
