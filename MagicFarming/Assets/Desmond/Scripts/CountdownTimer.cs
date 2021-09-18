@@ -48,6 +48,11 @@ public class CountdownTimer : MonoBehaviour
         timerUI.fillAmount = timeRemaining / maxTime;
     }
 
+    public void EndTimer()
+    {
+        timeRemaining = 0.0f;
+    }
+
     [ContextMenu("RestartTimer")]
     public void RestartTimer()
     {

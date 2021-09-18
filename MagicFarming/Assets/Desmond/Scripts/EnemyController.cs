@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FoxController : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
     [HeaderAttribute("Navigation")]
     public NavMeshAgent agent;
@@ -12,16 +12,19 @@ public class FoxController : MonoBehaviour
     [HeaderAttribute("Stats")]
     public float health = 100;
     public float damage = 20;
+    public float damageDelay = 3.0f;
 
     [HeaderAttribute("Display Only")]
     [SerializeField] private Transform target;
     private float distance;
+    private bool isDead;
+    private bool canAttack;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        canAttack = true;
     }
 
     // Update is called once per frame
@@ -29,15 +32,30 @@ public class FoxController : MonoBehaviour
     {
         if(target != null)
         {
-            if(CheckDistance(target) < satisfiedRange)
+            FindTargetToPursue();
+            if(target.GetComponent<SoilManager>().isPlanting)
             {
-                //Attack
-                //Debug.Log("Attack");
+                if(CheckDistance(target) < satisfiedRange)
+                {
+                    if(canAttack && target.GetComponent<SoilManager>().isPlanting)
+                    {
+                        StartCoroutine("AttackCooldown");
+                        Attack();
+                    }
+                }
+                else
+                {
+                    agent.SetDestination(target.position);
+                }
             }
             else
             {
-                agent.SetDestination(target.position);
+                FindTargetToPursue();
             }
+        }
+        else
+        {
+            FindTargetToPursue();
         }
     }
 
@@ -68,5 +86,45 @@ public class FoxController : MonoBehaviour
     float CheckDistance(Transform checkTarget)
     {
         return Vector3.Distance(checkTarget.position, transform.position);
+    }
+
+    public void TakeDamage(float damageAmt)
+    {
+        if(health > 0)
+        {
+            health -= damageAmt;
+            if(health <= 0)
+            {
+                isDead = true;
+                Death();
+            }
+        }
+    }
+
+    void Attack()
+    {
+        //Debug.Log("Attacking");
+        target.GetComponent<SoilManager>().TakeDamage(damage);
+    }
+
+    void Death()
+    {
+        if(isDead)
+        {
+            PetManager.instance.RemoveFromTargetList(transform);
+            Destroy(this.gameObject);
+        }
+    }
+
+    public bool GetIsDead()
+    {
+        return isDead;
+    }
+
+    IEnumerator AttackCooldown()
+    {
+        canAttack = false;
+        yield return new WaitForSeconds(damageDelay);
+        canAttack = true;
     }
 }

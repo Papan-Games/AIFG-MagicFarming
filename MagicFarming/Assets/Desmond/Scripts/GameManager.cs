@@ -7,12 +7,19 @@ public class GameManager : MonoBehaviour
     public static GameManager instance {get; private set;}
 
     public GameObject player;
-    public GameObject landTarget;
-    public float satisfiedRange = 1.0f;
-
     public List<SoilManager.Seeds> harvestObjective;
 
+    [HeaderAttribute("Planting")]
+    public GameObject landTarget;
+    public float satisfiedPlantRange = 3.5f;
+
+    [HeaderAttribute("Combat")]
+    public GameObject enemyTarget;
+    public float satisfiedEnemyRange = 1.5f;
+    public float damage = 50.0f;
+
     private SoilManager s_Manager;
+    private 
 
     void Awake() 
     {
@@ -35,9 +42,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        PlantingStuff();
+        CombatStuff();
+    }
+
+    void PlantingStuff()
+    {
         if(landTarget != null)
         {
-            if(CheckDistance(landTarget.transform))
+            if(CheckDistance(landTarget.transform, satisfiedPlantRange))
             {
                 s_Manager = landTarget.GetComponent<SoilManager>();
                 if(!s_Manager.isPlanting)
@@ -49,6 +62,10 @@ public class GameManager : MonoBehaviour
                     harvestObjective.Remove(s_Manager.HarvestPlant());
                     landTarget = null;
                 }
+                else if (s_Manager.GetIsDead())
+                {
+                    s_Manager.Heal();
+                }
             }
             else
             {
@@ -58,7 +75,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public bool CheckDistance(Transform target)
+    void CombatStuff()
+    {
+        if(enemyTarget != null)
+        {
+            Debug.Log(enemyTarget);
+            if(CheckDistance(enemyTarget.transform, satisfiedEnemyRange))
+            {
+                EnemyController enemyController = enemyTarget.GetComponent<EnemyController>();
+                if(enemyController != null)
+                {
+                    //check tag if its butterfly, if it is, clear butterfly
+                    //enemyController.TakeDamage(damage);
+                }
+                enemyTarget = null;
+            }
+        }
+    }
+
+    public bool CheckDistance(Transform target, float satisfiedRange)
     {
         float dist;
 
