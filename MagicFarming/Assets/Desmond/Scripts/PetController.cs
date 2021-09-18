@@ -30,25 +30,33 @@ public class PetController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(target != null)
+        if(PetManager.instance.butterflyList.Count <= 0)
         {
-            if(CheckDistance(target) < satisfiedRange)
+            if(target != null)
             {
-                if(canAttack)
+                if(CheckDistance(target) < satisfiedRange)
                 {
-                    StartCoroutine("AttackCooldown");
-                    Attack();
+                    if(canAttack)
+                    {
+                        StartCoroutine("AttackCooldown");
+                        Attack();
+                    }
+                }
+                else
+                {
+                    agent.SetDestination(target.position);
                 }
             }
             else
             {
-                agent.SetDestination(target.position);
+                FindTargetToPursue();
             }
         }
         else
         {
-            FindTargetToPursue();
+            agent.SetDestination(PetManager.instance.butterflyList[0].position);
         }
+        
     }
 
     [ContextMenu("FindTarget")]
@@ -56,7 +64,7 @@ public class PetController : MonoBehaviour
     {
         for(int i = 0; i < PetManager.instance.targetList.Count; i++)
         {
-            bool canTarget = !PetManager.instance.targetList[i].GetComponent<EnemyController>().GetIsDead();
+            bool canTarget = !PetManager.instance.targetList[i].GetComponentInChildren<EnemyController>().GetIsDead();
             if(canTarget)
             {
                 float temp = CheckDistance(PetManager.instance.targetList[i].transform);
@@ -84,11 +92,11 @@ public class PetController : MonoBehaviour
     {
         if(CheckCritical())
         {
-            target.GetComponent<EnemyController>().TakeDamage(critDamage);
+            target.GetComponentInChildren<EnemyController>().TakeDamage(critDamage);
         }
         else
         {
-            target.GetComponent<EnemyController>().TakeDamage(damage);
+            target.GetComponentInChildren<EnemyController>().TakeDamage(damage);
         }
     }
 

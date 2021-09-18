@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class EnemyController : MonoBehaviour
     public float health = 100;
     public float damage = 20;
     public float damageDelay = 3.0f;
+    private float maxHealth = 100;
+
+    [HeaderAttribute("Components")]
+    public Image healthFill;
 
     [HeaderAttribute("Display Only")]
     [SerializeField] private Transform target;
@@ -93,12 +98,18 @@ public class EnemyController : MonoBehaviour
         if(health > 0)
         {
             health -= damageAmt;
+            UpdateHealthBar();
             if(health <= 0)
             {
                 isDead = true;
                 Death();
             }
         }
+    }
+
+    void UpdateHealthBar()
+    {
+        healthFill.fillAmount = health / maxHealth;
     }
 
     void Attack()
@@ -112,7 +123,7 @@ public class EnemyController : MonoBehaviour
         if(isDead)
         {
             PetManager.instance.RemoveFromTargetList(transform);
-            Destroy(this.gameObject);
+            Destroy(this.transform.parent.gameObject);
         }
     }
 

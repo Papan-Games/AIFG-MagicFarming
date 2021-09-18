@@ -43,10 +43,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c96d207504082654392c204b43be6254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  foxPrefab: {fileID: 1358424067409440019, guid: 10f2adb32d49cc44598b27200e136604,
+    type: 3}
+  monkeyPrefab: {fileID: 4524693224234634670, guid: 0c26f0bdcdd428a44aaffc559122210c,
+    type: 3}
+  butterflyPrefab: {fileID: 4504730936236710312, guid: 3737ecb5af588864c862d75f4d82abaf,
+    type: 3}
+  phase1Interval: 5
+  phase2Interval: 10
+  phase3Interval: 15
+  butterflyInterval: 30
   targetList:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  butterflySpawnPoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

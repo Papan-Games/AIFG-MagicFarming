@@ -168,18 +168,21 @@ public class SoilManager : MonoBehaviour
 
     public void ChangeToHarvestState()
     {
-        harvestState = true;
-        if(growingSeed == Seeds.Peach)
+        if(isPlanting)
         {
-            peachOBJ.SetActive(true);
-        }
-        else if (growingSeed == Seeds.GlowingMushroom)
-        {
-            mushroomOBJ.SetActive(true);
-        }
-        else
-        {
-            rafflesiaOBJ.SetActive(true);
+            harvestState = true;
+            if(growingSeed == Seeds.Peach)
+            {
+                peachOBJ.SetActive(true);
+            }
+            else if (growingSeed == Seeds.GlowingMushroom)
+            {
+                mushroomOBJ.SetActive(true);
+            }
+            else
+            {
+                rafflesiaOBJ.SetActive(true);
+            }
         }
     }
 

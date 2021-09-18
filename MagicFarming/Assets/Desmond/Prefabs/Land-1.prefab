@@ -1130,7 +1130,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a87e5c72005736b47855be1dab92eb25,
         type: 3}
       propertyPath: m_Name
-      value: Peach
+      value: PeachOBJ
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a87e5c72005736b47855be1dab92eb25,
         type: 3}
@@ -1160,7 +1160,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1000013500011156, guid: e6ba9b16af0144c428401df4428fde4f, type: 3}
       propertyPath: m_Name
-      value: Mushroom
+      value: MushroomOBJ
       objectReference: {fileID: 0}
     - target: {fileID: 1000013500011156, guid: e6ba9b16af0144c428401df4428fde4f, type: 3}
       propertyPath: m_IsActive
@@ -1437,7 +1437,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 6de90b8663b04dd4aa0e95dad197ed62,
         type: 3}
       propertyPath: m_Name
-      value: Rafflesia
+      value: RafflesiaOBJ
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6de90b8663b04dd4aa0e95dad197ed62,
         type: 3}
