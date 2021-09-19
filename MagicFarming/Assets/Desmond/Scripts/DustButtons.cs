@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class DustButtons : MonoBehaviour
 {
-    //public Button attackButton;
     public Button healButton;
     public Button speedUpButton;
     public GameObject healCover;
@@ -20,14 +19,7 @@ public class DustButtons : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if(GameManager.instance.CheckAttackCost())
-        // {
-        //     attackButton.interactable = true;
-        // }
-        // else
-        // {
-        //     attackButton.interactable = false;
-        // }
+
 
         if(GameManager.instance.CheckHealCost())
         {

@@ -179,9 +179,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void StopGame()
+    public void StopGame()
     {
         Debug.Log("FINISHED");
+        //show panel
+        Time.timeScale = 0.0f;
     }
 
     void ClearObjectives(SoilManager.Seeds harvested)
