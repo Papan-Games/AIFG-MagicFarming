@@ -92,16 +92,19 @@ public class EnemyManager : MonoBehaviour
         }
         else
         {
-            GameObject temp;
+            if(PetManager.instance.butterflyList.Count < 2)
+            {
+                GameObject temp;
 
-            temp = Instantiate( 
-                butterflyPrefab,
-                butterflySpawnPoints[Random.Range(0, butterflySpawnPoints.Count)].position, 
-                Quaternion.identity
-                );
-            
-            PetManager.instance.AddToButterflyList(temp.transform);
-            butterflyTimeRemaining = butterflyInterval;
+                temp = Instantiate( 
+                    butterflyPrefab,
+                    butterflySpawnPoints[Random.Range(0, butterflySpawnPoints.Count)].position, 
+                    Quaternion.identity
+                    );
+
+                PetManager.instance.AddToButterflyList(temp.transform);
+                butterflyTimeRemaining = butterflyInterval;
+            }
         }
     }
 }
