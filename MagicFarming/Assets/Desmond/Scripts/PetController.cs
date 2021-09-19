@@ -8,6 +8,7 @@ public class PetController : MonoBehaviour
     [HeaderAttribute("Navigation")]
     public NavMeshAgent agent;
     public float satisfiedRange;
+    private Vector3 calledPosition;
 
     [HeaderAttribute("Stats")]
     public float health = 100;
@@ -20,11 +21,13 @@ public class PetController : MonoBehaviour
     [SerializeField] private Transform target;
     private float distance;
     private bool canAttack;
+    private bool callToPlayer;
 
     // Start is called before the first frame update
     void Start()
     {
         canAttack = true;
+        callToPlayer = false;
     }
 
     // Update is called once per frame
@@ -32,6 +35,19 @@ public class PetController : MonoBehaviour
     {
         if(PetManager.instance.butterflyList.Count <= 0)
         {
+            if(callToPlayer)
+            {
+                if(CheckDistance(calledPosition) < satisfiedRange)
+                {
+                    callToPlayer = false;
+                }
+                else
+                {
+                    agent.SetDestination(calledPosition);
+                    return;
+                }
+            }
+
             if(target != null)
             {
                 if(CheckDistance(target) < satisfiedRange)
@@ -57,6 +73,16 @@ public class PetController : MonoBehaviour
             agent.SetDestination(PetManager.instance.butterflyList[0].position);
         }
         
+    }
+
+    [ContextMenu("CallToPlayer")]
+    public void CallToPlayer()
+    {
+        if(PetManager.instance.butterflyList.Count <= 0)
+        {
+            callToPlayer = true;
+            calledPosition = GameManager.instance.player.transform.position;
+        }
     }
 
     [ContextMenu("FindTarget")]
@@ -86,6 +112,11 @@ public class PetController : MonoBehaviour
     float CheckDistance(Transform checkTarget)
     {
         return Vector3.Distance(checkTarget.position, transform.position);
+    }
+
+    float CheckDistance(Vector3 checkPos)
+    {
+        return Vector3.Distance(checkPos, transform.position);
     }
 
     void Attack()
