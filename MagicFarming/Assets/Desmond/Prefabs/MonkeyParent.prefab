@@ -344,6 +344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 8309843377695295859}
   satisfiedRange: 1.5
+  fleeRange: 5
   wanderInterval: 3
   health: 100
   damage: 20

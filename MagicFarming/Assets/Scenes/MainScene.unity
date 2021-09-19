@@ -13795,66 +13795,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ea7e16f5baa0c84792ed57d632297a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!21 &982293161
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: LiberationSans SDF Material
-  m_Shader: {fileID: 4800000, guid: fe393ace9b354375a9cb14cdbbc28be4, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 1
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 28684132378477856, guid: 8f586378b4e144a9851e7b34d9b748ee,
-          type: 2}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - _ColorMask: 15
-    - _FaceDilate: 0
-    - _GradientScale: 10
-    - _MaskSoftnessX: 0
-    - _MaskSoftnessY: 0
-    - _OutlineSoftness: 0
-    - _OutlineWidth: 0
-    - _PerspectiveFilter: 0.875
-    - _ScaleRatioA: 0.9
-    - _ScaleRatioB: 1
-    - _ScaleRatioC: 0.73125
-    - _ScaleX: 1
-    - _ScaleY: 1
-    - _ShaderFlags: 0
-    - _Sharpness: 0
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _TextureHeight: 1024
-    - _TextureWidth: 1024
-    - _UnderlayDilate: 0
-    - _UnderlayOffsetX: 0
-    - _UnderlayOffsetY: 0
-    - _UnderlaySoftness: 0
-    - _VertexOffsetX: 0
-    - _VertexOffsetY: 0
-    - _WeightBold: 0.75
-    - _WeightNormal: 0
-    m_Colors:
-    - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
-    - _FaceColor: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _UnderlayColor: {r: 0, g: 0, b: 0, a: 0.5}
 --- !u!1 &985707920
 GameObject:
   m_ObjectHideFlags: 0
@@ -16808,7 +16748,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1273023245}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2135511818}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 183899099e78cac48a2b8880b0aae15a, type: 3}
@@ -16826,6 +16766,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PetManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8168852448316451485, guid: 101851cc0cb87f547b4ff568cdb864c3,
+        type: 3}
+      propertyPath: petObj
+      value: 
+      objectReference: {fileID: 2135511818}
     - target: {fileID: 8168852448316451486, guid: 101851cc0cb87f547b4ff568cdb864c3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22665,3 +22610,9 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &2135511818 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2027921372121846711, guid: dc091b65de953624e8fb0ebfe2b4af36,
+    type: 3}
+  m_PrefabInstance: {fileID: 1273023245}
+  m_PrefabAsset: {fileID: 0}
