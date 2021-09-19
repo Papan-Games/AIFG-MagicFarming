@@ -22,10 +22,12 @@ public class GameManager : MonoBehaviour
     public int healDustCost = 40;
     public int harvestHQDust = 100;
     public int harvestLQDust = 50;
+    public int speedUpDustCost = 50;
+    public float speedUpAmt = 3.0f;
 
 
     [HeaderAttribute("Combat")]
-    public int dustCost = 20;
+    public int attackDustCost = 20;
     public float satisfiedButterflyRange = 3.0f;
     public float damage = 50.0f;
     
@@ -67,6 +69,11 @@ public class GameManager : MonoBehaviour
         dustAmt -= healDustCost;
     }
 
+    public void SpeedUpDustCost()
+    {
+        dustAmt -= speedUpDustCost;
+    }
+
     [ContextMenu("Attack")]
     public void AttackWithDust()
     {
@@ -89,7 +96,7 @@ public class GameManager : MonoBehaviour
             d = 0;
             attackTarget.GetComponentInChildren<EnemyController>().TakeDamage(damage);
             // Play particle effect
-            dustAmt -= dustCost;
+            dustAmt -= attackDustCost;
         }
     }
 
@@ -225,5 +232,40 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public bool CheckAttackCost()
+    {
+        if(dustAmt >= attackDustCost)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool CheckHealCost()
+    {
+        if(dustAmt >= healDustCost)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool CheckSpeedUpCost()
+    {
+        if(dustAmt >= speedUpDustCost)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
 }

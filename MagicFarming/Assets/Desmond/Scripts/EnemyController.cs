@@ -60,6 +60,7 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
+            Wander();
             FindTargetToPursue();
         }
     }
@@ -86,6 +87,11 @@ public class EnemyController : MonoBehaviour
             }
         }
         distance = 0;
+    }
+
+    void Wander()
+    {
+        
     }
 
     float CheckDistance(Transform checkTarget)
