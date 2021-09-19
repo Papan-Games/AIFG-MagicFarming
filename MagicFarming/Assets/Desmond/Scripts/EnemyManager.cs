@@ -70,18 +70,18 @@ public class EnemyManager : MonoBehaviour
         int randomSpawnPoint = Random.Range(0, spawnPoints.Count);
         GameObject temp;
 
-        if(randomEnemy == 0) // spawn fox
+        if(PetManager.instance.CheckNumberOfEnemies())
         {
-            temp = Instantiate(foxPrefab, spawnPoints[randomSpawnPoint].position, Quaternion.identity);
-            //temp.GetComponent<EnemyController>().FindTargetToPursue();
+            if(randomEnemy == 0) // spawn fox
+            {
+                temp = Instantiate(foxPrefab, spawnPoints[randomSpawnPoint].position, Quaternion.identity);
+            }
+            else // spawn monkey
+            {
+                temp = Instantiate(monkeyPrefab, spawnPoints[randomSpawnPoint].position, Quaternion.identity);
+            }
+            PetManager.instance.AddToTargetList(temp.transform.GetChild(0).transform);
         }
-        else // spawn monkey
-        {
-            temp = Instantiate(monkeyPrefab, spawnPoints[randomSpawnPoint].position, Quaternion.identity);
-            //temp.GetComponent<EnemyController>().FindTargetToPursue();
-        }
-
-        PetManager.instance.AddToTargetList(temp.transform.GetChild(0).transform);
     }
 
     void SpawnButterfly()
@@ -92,16 +92,19 @@ public class EnemyManager : MonoBehaviour
         }
         else
         {
-            GameObject temp;
+            if(PetManager.instance.butterflyList.Count < 2)
+            {
+                GameObject temp;
 
-            temp = Instantiate( 
-                butterflyPrefab,
-                butterflySpawnPoints[Random.Range(0, butterflySpawnPoints.Count)].position, 
-                Quaternion.identity
-                );
-            
-            PetManager.instance.AddToButterflyList(temp.transform);
-            butterflyTimeRemaining = butterflyInterval;
+                temp = Instantiate( 
+                    butterflyPrefab,
+                    butterflySpawnPoints[Random.Range(0, butterflySpawnPoints.Count)].position, 
+                    Quaternion.identity
+                    );
+
+                PetManager.instance.AddToButterflyList(temp.transform);
+                butterflyTimeRemaining = butterflyInterval;
+            }
         }
     }
 }

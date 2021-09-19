@@ -48,4 +48,16 @@ public class PetManager : MonoBehaviour
     {
         butterflyList.Add(butterfly);
     }
+
+    public bool CheckNumberOfEnemies()
+    {
+        if(targetList.Count < GameManager.instance.maxEnemies)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

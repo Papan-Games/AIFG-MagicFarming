@@ -23,36 +23,36 @@ public class SoundSettingManager : MonoBehaviour
         // Get boolean using PlayerPrefs
         isSoundOn = PlayerPrefs.GetInt("isMute") == 1 ? true : false;
         //muteUnmuteToggle.isOn = !isSoundOn;
-        if (isSoundOn == false)
-        {
-            AudioListener.volume = 0;
-            PlayerPrefs.SetString("Sound On", "true");
+        //if (isSoundOn == false)
+        //{
+        //    AudioListener.volume = 0;
+        //    PlayerPrefs.SetString("Sound On", "true");
 
-            //Save boolean using PlayerPrefs
-            PlayerPrefs.SetInt("isMute", isSoundOn ? 1 : 0);
-            isSoundOn = true;
-        }
+        //    //Save boolean using PlayerPrefs
+        //    PlayerPrefs.SetInt("isMute", isSoundOn ? 1 : 0);
+        //    isSoundOn = true;
+        //}
 
-        else
-        {
-            AudioListener.volume = volumeSlider.value;
-            PlayerPrefs.SetString("Sound On", "false");
-            PlayerPrefs.SetInt("isMute", isSoundOn ? 1 : 0);
-            isSoundOn = false;
-        }
+        //else
+        //{
+        //    AudioListener.volume = volumeSlider.value;
+        //    PlayerPrefs.SetString("Sound On", "false");
+        //    PlayerPrefs.SetInt("isMute", isSoundOn ? 1 : 0);
+        //    isSoundOn = false;
+        //}
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isSoundOn)
-        {
-            volumeSlider.interactable = false;
-        }
-        else
-        {
-            volumeSlider.interactable = true;
-        }
+        //if (isSoundOn)
+        //{
+        //    volumeSlider.interactable = false;
+        //}
+        //else
+        //{
+        //    volumeSlider.interactable = true;
+        //}
     }
 
     //Adjust the game volume

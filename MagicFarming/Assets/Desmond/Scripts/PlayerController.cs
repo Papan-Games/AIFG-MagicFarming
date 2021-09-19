@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,23 +13,22 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if(Physics.Raycast(ray, out hit))
+            if(!EventSystem.current.IsPointerOverGameObject())
             {
-                agent.SetDestination(hit.point);
-                // if(hit.collider.gameObject.layer != LayerMask.NameToLayer("UI"))
-                // {
-                //     agent.SetDestination(hit.point);
-                // }
-                if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Land"))
+                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if(Physics.Raycast(ray, out hit))
                 {
-                    GameManager.instance.landTarget = hit.collider.gameObject;
-                }
-                else if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-                {
-                    GameManager.instance.enemyTarget = hit.collider.gameObject;
+                    agent.SetDestination(hit.point);
+                    if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Land"))
+                    {
+                        GameManager.instance.landTarget = hit.collider.gameObject;
+                    }
+                    else if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+                    {
+                        GameManager.instance.enemyTarget = hit.collider.gameObject;
+                    }
                 }
             }
         }

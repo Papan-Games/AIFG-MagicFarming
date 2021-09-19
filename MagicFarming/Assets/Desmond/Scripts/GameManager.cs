@@ -30,11 +30,16 @@ public class GameManager : MonoBehaviour
     public int attackDustCost = 20;
     public float satisfiedButterflyRange = 3.0f;
     public float damage = 50.0f;
+    public int maxEnemies = 5;
+
+    [HeaderAttribute("Grade Panel")]
+    public GameObject gradePanel;
     
     [HeaderAttribute("Combat Read Only")]
     public GameObject enemyTarget;
     public List<Transform> enemiesInRange;
     private GameObject attackTarget;
+
 
     private SoilManager s_Manager;
     private float d;
@@ -178,9 +183,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void StopGame()
+    public void StopGame()
     {
-        Debug.Log("FINISHED");
+        //Debug.Log("FINISHED");
+        //gradePanel.SetActive(true);
+        //Time.timeScale = 0.0f;
     }
 
     void ClearObjectives(SoilManager.Seeds harvested)

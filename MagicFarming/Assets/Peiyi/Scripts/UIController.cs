@@ -8,9 +8,16 @@ using TMPro;
 public class UIController : MonoBehaviour
 {
     [SerializeField] AudioSource SoundEffect;
+
+    [Header("UI Sound Effect")]
     [SerializeField] AudioClip mouseEnter;
     [SerializeField] AudioClip mouseClick;
+    [SerializeField] AudioClip whistle;
+    [SerializeField] AudioClip attack;
+
+    [Header("Game Object")]
     [SerializeField] GameObject FadePanel;
+    [SerializeField] GameObject SettingPanel;
 
     [Header("For Chage Scene Use")]
     [SerializeField] int InstructionSceneNo = 1;
@@ -80,8 +87,28 @@ public class UIController : MonoBehaviour
         StartCoroutine(LoadScene(GameSceneNo));
     }
 
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+    }
+
     public void BackHomePage()
     {
         StartCoroutine(LoadScene(HomePageSceneNo));
+    }
+
+    public void AttackButton()
+    {
+        SoundEffect.PlayOneShot(attack);
+    }
+
+    public void WhistleButton()
+    {
+        SoundEffect.PlayOneShot(whistle);
     }
 }

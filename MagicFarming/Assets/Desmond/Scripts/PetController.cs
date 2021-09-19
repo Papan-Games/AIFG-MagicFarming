@@ -40,6 +40,7 @@ public class PetController : MonoBehaviour
                 if(CheckDistance(calledPosition) < satisfiedRange)
                 {
                     callToPlayer = false;
+                    FindTargetToPursue();
                 }
                 else
                 {
