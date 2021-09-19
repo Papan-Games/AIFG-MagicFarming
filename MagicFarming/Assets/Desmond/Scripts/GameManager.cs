@@ -7,12 +7,35 @@ public class GameManager : MonoBehaviour
     public static GameManager instance {get; private set;}
 
     public GameObject player;
-    public GameObject landTarget;
-    public float satisfiedRange = 1.0f;
+    
+    [HeaderAttribute("Level Harvest Objectives")]
+    public int peaches;
+    public int mushrooms;
+    public int rafflesias;
 
-    public List<SoilManager.Seeds> harvestObjective;
+    [HeaderAttribute("Stats")]
+    public int dustAmt = 200;
+
+    [HeaderAttribute("Planting")]
+    public GameObject landTarget;
+    public float satisfiedPlantRange = 3.5f;
+    public int healDustCost = 40;
+    public int harvestHQDust = 100;
+    public int harvestLQDust = 50;
+
+
+    [HeaderAttribute("Combat")]
+    public int dustCost = 20;
+    public float satisfiedButterflyRange = 3.0f;
+    public float damage = 50.0f;
+    
+    [HeaderAttribute("Combat Read Only")]
+    public GameObject enemyTarget;
+    public List<Transform> enemiesInRange;
+    private GameObject attackTarget;
 
     private SoilManager s_Manager;
+    private float d;
 
     void Awake() 
     {
@@ -35,9 +58,46 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        PlantingStuff();
+        CombatStuff();
+    }
+
+    public void HealDustCost()
+    {
+        dustAmt -= healDustCost;
+    }
+
+    [ContextMenu("Attack")]
+    public void AttackWithDust()
+    {
+        if(enemiesInRange.Count > 0)
+        {
+            for(int i = 0; i < enemiesInRange.Count; i++)
+            {
+                float temp = Vector3.Distance(enemiesInRange[i].position, player.transform.position);
+                if(d <= 0)
+                {
+                    attackTarget = enemiesInRange[i].gameObject;
+                    d = temp;
+                }
+                else if(temp <= d)
+                {
+                    attackTarget = enemiesInRange[i].gameObject;
+                    d = temp;
+                }
+            }
+            d = 0;
+            attackTarget.GetComponentInChildren<EnemyController>().TakeDamage(damage);
+            // Play particle effect
+            dustAmt -= dustCost;
+        }
+    }
+
+    void PlantingStuff()
+    {
         if(landTarget != null)
         {
-            if(CheckDistance(landTarget.transform))
+            if(CheckDistance(landTarget.transform, satisfiedPlantRange))
             {
                 s_Manager = landTarget.GetComponent<SoilManager>();
                 if(!s_Manager.isPlanting)
@@ -46,19 +106,55 @@ public class GameManager : MonoBehaviour
                 }
                 else if(s_Manager.GetHarvestState())
                 {
-                    harvestObjective.Remove(s_Manager.HarvestPlant());
+                    ClearObjectives(s_Manager.HarvestPlant());
+                    RewardDust(s_Manager.GetHarvestQuality());
+                    s_Manager.HideHealMenu();
                     landTarget = null;
+                }
+                else
+                {
+                    s_Manager.ShowHealMenu();
+                    //s_Manager.Heal();
                 }
             }
             else
             {
                 landTarget.GetComponent<SoilManager>().HideSeedMenu();
+                landTarget.GetComponent<SoilManager>().HideHealMenu();
                 landTarget = null;
             }
         }
     }
 
-    public bool CheckDistance(Transform target)
+    void RewardDust(bool highQuality)
+    {
+        if(highQuality)
+        {
+            dustAmt += harvestHQDust;
+        }
+        else
+        {
+            dustAmt += harvestLQDust;
+        }
+    }
+
+    void CombatStuff()
+    {
+        if(enemyTarget != null)
+        {
+            if(CheckDistance(enemyTarget.transform, satisfiedButterflyRange))
+            {
+                if(enemyTarget.CompareTag("Butterfly"))
+                {
+                    PetManager.instance.butterflyList.Remove(enemyTarget.transform);
+                    Destroy(enemyTarget);
+                }
+                enemyTarget = null;
+            }
+        }
+    }
+
+    public bool CheckDistance(Transform target, float satisfiedRange)
     {
         float dist;
 
@@ -73,5 +169,61 @@ public class GameManager : MonoBehaviour
             return false;
         }
     }
+
+    void StopGame()
+    {
+        Debug.Log("FINISHED");
+    }
+
+    void ClearObjectives(SoilManager.Seeds harvested)
+    {
+        switch (harvested)
+        {
+            case (SoilManager.Seeds.Peach):
+            {
+                if(peaches > 0)
+                {
+                    peaches--;
+                }
+                CheckObjectives();
+                break;
+            }
+
+            case (SoilManager.Seeds.GlowingMushroom):
+            {
+                if(mushrooms > 0)
+                {
+                    mushrooms--;
+                }
+                CheckObjectives();
+                break;
+            }
+
+            case (SoilManager.Seeds.Rafflesia):
+            {
+                if(rafflesias > 0)
+                {
+                    rafflesias--;
+                }
+                CheckObjectives();
+                break;
+            }
+            
+            default:
+            {
+                break;
+            }
+        }
+
+    }
+
+    void CheckObjectives()
+    {
+        if(peaches == 0 && mushrooms == 0 && rafflesias == 0)
+        {
+            StopGame();
+        }
+    }
+
 
 }

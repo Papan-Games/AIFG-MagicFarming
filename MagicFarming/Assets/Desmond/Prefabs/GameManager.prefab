@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  landTarget: {fileID: 0}
-  satisfiedRange: 3.5
   harvestObjective: 00000000010000000200000001000000010000000200000000000000020000000000000000000000
+  landTarget: {fileID: 0}
+  satisfiedPlantRange: 3.5
+  enemyTarget: {fileID: 0}
+  satisfiedEnemyRange: 1.5
+  damage: 50

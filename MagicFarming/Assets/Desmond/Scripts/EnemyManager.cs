@@ -8,17 +8,21 @@ public class EnemyManager : MonoBehaviour
 
     public GameObject foxPrefab;
     public GameObject monkeyPrefab;
+    public GameObject butterflyPrefab;
     public float phase1Interval;
     public float phase2Interval;
     public float phase3Interval;
+    public float butterflyInterval;
 
     public List<Transform> targetList;
 
     public List<Transform> spawnPoints;
+    public List<Transform> butterflySpawnPoints;
 
     private bool phase1;
     private float timer;
     private float timeRemaining;
+    private float butterflyTimeRemaining;
 
     void Awake() 
     {
@@ -36,12 +40,14 @@ public class EnemyManager : MonoBehaviour
     void Start()
     {
         timeRemaining = phase1Interval;
+        butterflyTimeRemaining = butterflyInterval;
         phase1 = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        SpawnButterfly();
         if(timeRemaining > 0.0f)
         {
             timeRemaining -= Time.deltaTime;
@@ -53,6 +59,8 @@ public class EnemyManager : MonoBehaviour
             {
                 timeRemaining = phase1Interval;
             }
+            // else if(phase2)
+            // else if(phase3)
         }
     }
 
@@ -62,16 +70,38 @@ public class EnemyManager : MonoBehaviour
         int randomSpawnPoint = Random.Range(0, spawnPoints.Count);
         GameObject temp;
 
-        if(randomEnemy == 0)
+        if(randomEnemy == 0) // spawn fox
         {
             temp = Instantiate(foxPrefab, spawnPoints[randomSpawnPoint].position, Quaternion.identity);
-            temp.GetComponent<FoxController>().FindTargetToPursue();
+            //temp.GetComponent<EnemyController>().FindTargetToPursue();
+        }
+        else // spawn monkey
+        {
+            temp = Instantiate(monkeyPrefab, spawnPoints[randomSpawnPoint].position, Quaternion.identity);
+            //temp.GetComponent<EnemyController>().FindTargetToPursue();
+        }
+
+        PetManager.instance.AddToTargetList(temp.transform.GetChild(0).transform);
+    }
+
+    void SpawnButterfly()
+    {
+        if(butterflyTimeRemaining > 0.0f)
+        {
+            butterflyTimeRemaining -= Time.deltaTime;
         }
         else
         {
-            temp = Instantiate(monkeyPrefab, spawnPoints[randomSpawnPoint].position, Quaternion.identity);
-            // Monkey Controller
-            temp.GetComponent<FoxController>().FindTargetToPursue();
+            GameObject temp;
+
+            temp = Instantiate( 
+                butterflyPrefab,
+                butterflySpawnPoints[Random.Range(0, butterflySpawnPoints.Count)].position, 
+                Quaternion.identity
+                );
+            
+            PetManager.instance.AddToButterflyList(temp.transform);
+            butterflyTimeRemaining = butterflyInterval;
         }
     }
 }

@@ -7,7 +7,7 @@ public class PetManager : MonoBehaviour
     public static PetManager instance {get; private set;}
 
     public List<Transform> targetList;
-
+    public List<Transform> butterflyList;
 
 
     void Awake() 
@@ -42,5 +42,10 @@ public class PetManager : MonoBehaviour
     public void RemoveFromTargetList(Transform enemy)
     {
         targetList.Remove(enemy);
+    }
+
+    public void AddToButterflyList(Transform butterfly)
+    {
+        butterflyList.Add(butterfly);
     }
 }
