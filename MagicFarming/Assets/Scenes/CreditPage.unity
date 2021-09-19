@@ -597,10 +597,14 @@ MonoBehaviour:
   SoundEffect: {fileID: 104712160}
   mouseEnter: {fileID: 8300000, guid: 1e2a6e034d3c89444a81e4ee36093525, type: 3}
   mouseClick: {fileID: 8300000, guid: 049346a2b15a02a48a369387b392299a, type: 3}
-  FadePanel: {fileID: 0}
-  PlayBttnSceneNo: 0
-  CreditBttnSceneNo: 0
-  StartLevelSceneNo: 2
+  whistle: {fileID: 0}
+  attack: {fileID: 0}
+  FadePanel: {fileID: 914076272}
+  SettingPanel: {fileID: 0}
+  InstructionSceneNo: 1
+  CreditSceneNo: 3
+  GameSceneNo: 2
+  HomePageSceneNo: 0
 --- !u!1 &205698535
 GameObject:
   m_ObjectHideFlags: 0
@@ -1340,7 +1344,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Development by
+  m_text: Developed by
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4409a3a52c568784e9b353a7ae1183aa, type: 2}
   m_sharedMaterial: {fileID: -8688994738963705105, guid: 4409a3a52c568784e9b353a7ae1183aa,
