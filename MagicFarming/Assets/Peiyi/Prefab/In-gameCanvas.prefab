@@ -1288,6 +1288,7 @@ GameObject:
   - component: {fileID: 7733241700685720555}
   - component: {fileID: 839310729223029731}
   - component: {fileID: 3153864888444871303}
+  - component: {fileID: 5473969344673735115}
   m_Layer: 5
   m_Name: Call Dog
   m_TagString: Untagged
@@ -1352,6 +1353,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5473969344673735115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2703180507096851658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc68112583074e94f970569b60ecfcd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  callButton: {fileID: 4134936629124775502}
+  petController: {fileID: 0}
+  timeRemaining: 0
+  timeIsRunning: 0
+  downTime: 10
 --- !u!1 &2794292779230770803
 GameObject:
   m_ObjectHideFlags: 0
@@ -2903,6 +2921,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 904229493121524536}
         m_MethodName: WhistleButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5473969344673735115}
+        m_MethodName: CallDogOver
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
