@@ -21,6 +21,7 @@ public class SoilManager : MonoBehaviour
     public Seeds growingSeed;
     public GameObject healthBar;
     public Image healthFill;
+    public ParticleSystem healEffect;
 
     [HeaderAttribute("Peach Variables")]
     public float p_growTime;
@@ -126,6 +127,7 @@ public class SoilManager : MonoBehaviour
             health = maxHealth;
             UpdateHealthBar();
             //Play heal particle
+            //healEffect.Play();
         }
         HideHealMenu();
     }

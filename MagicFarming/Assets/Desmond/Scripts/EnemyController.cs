@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour
     [HeaderAttribute("Navigation")]
     public NavMeshAgent agent;
     public float satisfiedRange;
+    public float wanderInterval = 3.0f;
 
     [HeaderAttribute("Stats")]
     public float health = 100;
@@ -18,6 +19,7 @@ public class EnemyController : MonoBehaviour
 
     [HeaderAttribute("Components")]
     public Image healthFill;
+    public ParticleSystem dustAttackEffect;
 
     [HeaderAttribute("Display Only")]
     [SerializeField] private Transform target;
@@ -25,10 +27,14 @@ public class EnemyController : MonoBehaviour
     private bool isDead;
     private bool canAttack;
 
+    private float timeRemaining;
+    private Vector3 tempWander;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        timeRemaining = 0.0f;
         canAttack = true;
     }
 
@@ -55,6 +61,7 @@ public class EnemyController : MonoBehaviour
             }
             else
             {
+                Wander();
                 FindTargetToPursue();
             }
         }
@@ -91,7 +98,21 @@ public class EnemyController : MonoBehaviour
 
     void Wander()
     {
-        
+        if(timeRemaining > 0.0f)
+        {
+            timeRemaining -= Time.deltaTime;
+            //timerUI.fillAmount = timeRemaining / maxTime;
+        }
+        else
+        {
+            timeRemaining = wanderInterval;
+            float x = Random.Range(-5.0f, 5.0f);
+            float z = Random.Range(-5.0f, 5.0f);
+            tempWander = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
+        }
+        //Transform playerT = GameManager.instance.player.transform;
+        //Vector3 temp = new Vector3(playerT.position.x + x, playerT.position.y, playerT.position.z + z);
+        agent.SetDestination(tempWander);
     }
 
     float CheckDistance(Transform checkTarget)

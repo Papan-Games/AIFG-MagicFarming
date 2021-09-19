@@ -2172,9 +2172,10 @@ MonoBehaviour:
   mouseEnter: {fileID: 8300000, guid: 1e2a6e034d3c89444a81e4ee36093525, type: 3}
   mouseClick: {fileID: 8300000, guid: 049346a2b15a02a48a369387b392299a, type: 3}
   FadePanel: {fileID: 1188667483}
-  PlayBttnSceneNo: 0
-  CreditBttnSceneNo: 3
-  StartLevelSceneNo: 0
+  InstructionSceneNo: 1
+  CreditSceneNo: 3
+  GameSceneNo: 2
+  HomePageSceneNo: 0
 --- !u!114 &834912622
 MonoBehaviour:
   m_ObjectHideFlags: 0
