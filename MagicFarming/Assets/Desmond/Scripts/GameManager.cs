@@ -186,8 +186,8 @@ public class GameManager : MonoBehaviour
     public void StopGame()
     {
         //Debug.Log("FINISHED");
-        //gradePanel.SetActive(true);
-        //Time.timeScale = 0.0f;
+        gradePanel.SetActive(true);
+        Time.timeScale = 0.0f;
     }
 
     void ClearObjectives(SoilManager.Seeds harvested)
