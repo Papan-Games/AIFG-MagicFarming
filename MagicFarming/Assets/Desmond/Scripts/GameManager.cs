@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour
             d = 0;
             attackTarget.GetComponentInChildren<EnemyController>().TakeDamage(damage);
             // Play particle effect
+            //attackTarget.GetComponentInChildren<EnemyController>().dustAttackEffect.Play();
             dustAmt -= attackDustCost;
         }
     }
