@@ -92,9 +92,11 @@ public class SoilManager : MonoBehaviour
     private void Death()
     {
         HideHealthBar();
+        HideHealMenu();
         timer.EndTimer();
         isPlanting = false;
         harvestState = false;
+        GameManager.instance.landTarget = null;
         HideFruit();
     }
 

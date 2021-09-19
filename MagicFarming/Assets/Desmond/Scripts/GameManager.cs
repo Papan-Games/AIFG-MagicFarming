@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     public int attackDustCost = 20;
     public float satisfiedButterflyRange = 3.0f;
     public float damage = 50.0f;
+    public int maxEnemies = 5;
     
     [HeaderAttribute("Combat Read Only")]
     public GameObject enemyTarget;

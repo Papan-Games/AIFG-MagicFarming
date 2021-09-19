@@ -70,18 +70,18 @@ public class EnemyManager : MonoBehaviour
         int randomSpawnPoint = Random.Range(0, spawnPoints.Count);
         GameObject temp;
 
-        if(randomEnemy == 0) // spawn fox
+        if(PetManager.instance.CheckNumberOfEnemies())
         {
-            temp = Instantiate(foxPrefab, spawnPoints[randomSpawnPoint].position, Quaternion.identity);
-            //temp.GetComponent<EnemyController>().FindTargetToPursue();
+            if(randomEnemy == 0) // spawn fox
+            {
+                temp = Instantiate(foxPrefab, spawnPoints[randomSpawnPoint].position, Quaternion.identity);
+            }
+            else // spawn monkey
+            {
+                temp = Instantiate(monkeyPrefab, spawnPoints[randomSpawnPoint].position, Quaternion.identity);
+            }
+            PetManager.instance.AddToTargetList(temp.transform.GetChild(0).transform);
         }
-        else // spawn monkey
-        {
-            temp = Instantiate(monkeyPrefab, spawnPoints[randomSpawnPoint].position, Quaternion.identity);
-            //temp.GetComponent<EnemyController>().FindTargetToPursue();
-        }
-
-        PetManager.instance.AddToTargetList(temp.transform.GetChild(0).transform);
     }
 
     void SpawnButterfly()
