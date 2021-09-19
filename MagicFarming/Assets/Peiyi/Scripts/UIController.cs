@@ -14,11 +14,12 @@ public class UIController : MonoBehaviour
 
     [SerializeField] int PlayBttnSceneNo;
     [SerializeField] int CreditBttnSceneNo;
+    [SerializeField] int StartLevelSceneNo;
 
     // Start is called before the first frame update
     void Start()
     {
-        FadePanel.SetActive(false);
+        //FadePanel.SetActive(false);
     }
 
     public void MouseEnter(Button bttn)
@@ -61,7 +62,19 @@ public class UIController : MonoBehaviour
     IEnumerator LoadScene(int sceneNo)
     {
         FadePanel.SetActive(true);
-        yield return new WaitForSeconds(1.5f);
+        //if (FadePanel.GetComponent<GraphicRaycaster>() != null)
+        //{
+        //    if (FadePanel.GetComponent<GraphicRaycaster>().enabled == false)
+        //    {
+        //        FadePanel.GetComponent<GraphicRaycaster>().enabled = true;
+        //    }
+        //}
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(sceneNo);
+    }
+
+    public void StartLevel()
+    {
+        StartCoroutine(LoadScene(StartLevelSceneNo));
     }
 }
