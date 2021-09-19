@@ -123,6 +123,7 @@ public class EnemyController : MonoBehaviour
         if(isDead)
         {
             PetManager.instance.RemoveFromTargetList(transform);
+            GameManager.instance.enemiesInRange.Remove(transform);
             Destroy(this.transform.parent.gameObject);
         }
     }

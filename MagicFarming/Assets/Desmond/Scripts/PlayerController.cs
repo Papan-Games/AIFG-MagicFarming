@@ -33,4 +33,26 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerEnter(Collider other) 
+    {
+        if(other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            if(!other.CompareTag("Butterfly"))
+            {
+                GameManager.instance.enemiesInRange.Add(other.transform);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other) 
+    {
+        if(other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            if(!other.CompareTag("Butterfly"))
+            {
+                GameManager.instance.enemiesInRange.Remove(other.transform);
+            }
+        }    
+    }
 }

@@ -11,9 +11,11 @@ public class SoilManager : MonoBehaviour
     public float health = 100;
     private float maxHealth = 100;
     private bool isDead;
+    private float lowQualityHealth = 50;
 
     [HeaderAttribute("Components")]
     public GameObject seedMenu;
+    public GameObject healMenu;
     public bool isPlanting;
     public CountdownTimer timer;
     public Seeds growingSeed;
@@ -33,6 +35,7 @@ public class SoilManager : MonoBehaviour
     public GameObject rafflesiaOBJ;
 
     private bool harvestState;
+    private bool returnHQ;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +45,7 @@ public class SoilManager : MonoBehaviour
         isPlanting = false;
         HideSeedMenu();
         HideHealthBar();
+        HideHealMenu();
     }
 
     // Update is called once per frame
@@ -93,9 +97,29 @@ public class SoilManager : MonoBehaviour
         HideFruit();
     }
 
+    public void ShowHealMenu()
+    {
+        if(isPlanting)
+        {
+            healMenu.SetActive(true);
+        }
+    }
+    
+    public void HideHealMenu()
+    {
+        healMenu.SetActive(false);
+    }
+
     public void Heal()
     {
-
+        if(health < maxHealth)
+        {
+            GameManager.instance.HealDustCost();
+            health = maxHealth;
+            UpdateHealthBar();
+            //Play heal particle
+        }
+        HideHealMenu();
     }
 
     public void UpdateHealthBar()
@@ -120,11 +144,28 @@ public class SoilManager : MonoBehaviour
     {
         isPlanting = false;
         harvestState = false;
+        QualityControl();
         HideHealthBar();
         HideFruit();
         return growingSeed;
     }
 
+    void QualityControl()
+    {
+        if(health > lowQualityHealth)
+        {
+            returnHQ = true;
+        }
+        else
+        {
+            returnHQ = false;
+        }
+    }
+
+    public bool GetHarvestQuality()
+    {
+        return returnHQ;
+    }
 
     // FOR BUTTONS
     public void PlantPeach()
@@ -171,6 +212,8 @@ public class SoilManager : MonoBehaviour
         if(isPlanting)
         {
             harvestState = true;
+            HideHealMenu();
+            GameManager.instance.landTarget = null;
             if(growingSeed == Seeds.Peach)
             {
                 peachOBJ.SetActive(true);

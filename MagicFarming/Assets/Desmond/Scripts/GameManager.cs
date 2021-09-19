@@ -13,17 +13,29 @@ public class GameManager : MonoBehaviour
     public int mushrooms;
     public int rafflesias;
 
+    [HeaderAttribute("Stats")]
+    public int dustAmt = 200;
 
     [HeaderAttribute("Planting")]
     public GameObject landTarget;
     public float satisfiedPlantRange = 3.5f;
+    public int healDustCost = 40;
+    public int harvestHQDust = 100;
+    public int harvestLQDust = 50;
+
 
     [HeaderAttribute("Combat")]
-    public GameObject enemyTarget;
+    public int dustCost = 20;
     public float satisfiedButterflyRange = 3.0f;
     public float damage = 50.0f;
+    
+    [HeaderAttribute("Combat Read Only")]
+    public GameObject enemyTarget;
+    public List<Transform> enemiesInRange;
+    private GameObject attackTarget;
 
     private SoilManager s_Manager;
+    private float d;
 
     void Awake() 
     {
@@ -50,6 +62,37 @@ public class GameManager : MonoBehaviour
         CombatStuff();
     }
 
+    public void HealDustCost()
+    {
+        dustAmt -= healDustCost;
+    }
+
+    [ContextMenu("Attack")]
+    public void AttackWithDust()
+    {
+        if(enemiesInRange.Count > 0)
+        {
+            for(int i = 0; i < enemiesInRange.Count; i++)
+            {
+                float temp = Vector3.Distance(enemiesInRange[i].position, player.transform.position);
+                if(d <= 0)
+                {
+                    attackTarget = enemiesInRange[i].gameObject;
+                    d = temp;
+                }
+                else if(temp <= d)
+                {
+                    attackTarget = enemiesInRange[i].gameObject;
+                    d = temp;
+                }
+            }
+            d = 0;
+            attackTarget.GetComponentInChildren<EnemyController>().TakeDamage(damage);
+            // Play particle effect
+            dustAmt -= dustCost;
+        }
+    }
+
     void PlantingStuff()
     {
         if(landTarget != null)
@@ -64,18 +107,34 @@ public class GameManager : MonoBehaviour
                 else if(s_Manager.GetHarvestState())
                 {
                     ClearObjectives(s_Manager.HarvestPlant());
+                    RewardDust(s_Manager.GetHarvestQuality());
+                    s_Manager.HideHealMenu();
                     landTarget = null;
                 }
-                else if (s_Manager.GetIsDead())
+                else
                 {
-                    s_Manager.Heal();
+                    s_Manager.ShowHealMenu();
+                    //s_Manager.Heal();
                 }
             }
             else
             {
                 landTarget.GetComponent<SoilManager>().HideSeedMenu();
+                landTarget.GetComponent<SoilManager>().HideHealMenu();
                 landTarget = null;
             }
+        }
+    }
+
+    void RewardDust(bool highQuality)
+    {
+        if(highQuality)
+        {
+            dustAmt += harvestHQDust;
+        }
+        else
+        {
+            dustAmt += harvestLQDust;
         }
     }
 
