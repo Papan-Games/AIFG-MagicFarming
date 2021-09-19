@@ -600,9 +600,10 @@ MonoBehaviour:
   mouseEnter: {fileID: 8300000, guid: 1e2a6e034d3c89444a81e4ee36093525, type: 3}
   mouseClick: {fileID: 8300000, guid: 049346a2b15a02a48a369387b392299a, type: 3}
   FadePanel: {fileID: 1247295545}
-  PlayBttnSceneNo: 0
-  CreditBttnSceneNo: 0
-  StartLevelSceneNo: 2
+  InstructionSceneNo: 1
+  CreditSceneNo: 3
+  GameSceneNo: 2
+  HomePageSceneNo: 0
 --- !u!1 &205698535
 GameObject:
   m_ObjectHideFlags: 0
@@ -1382,7 +1383,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300032, guid: 34ecf51bcd3f4424eafda7dafd885bd0, type: 3}
+  m_Sprite: {fileID: 21300010, guid: 34ecf51bcd3f4424eafda7dafd885bd0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2194,7 +2195,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_AnchoredPosition: {x: -0.00012207031, y: 0}
   m_SizeDelta: {x: 28.904297, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1272866461
@@ -3009,7 +3010,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300034, guid: 34ecf51bcd3f4424eafda7dafd885bd0, type: 3}
+  m_Sprite: {fileID: 21300012, guid: 34ecf51bcd3f4424eafda7dafd885bd0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

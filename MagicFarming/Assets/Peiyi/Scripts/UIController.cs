@@ -12,9 +12,11 @@ public class UIController : MonoBehaviour
     [SerializeField] AudioClip mouseClick;
     [SerializeField] GameObject FadePanel;
 
-    [SerializeField] int PlayBttnSceneNo;
-    [SerializeField] int CreditBttnSceneNo;
-    [SerializeField] int StartLevelSceneNo;
+    [Header("For Chage Scene Use")]
+    [SerializeField] int InstructionSceneNo = 1;
+    [SerializeField] int CreditSceneNo = 3;
+    [SerializeField] int GameSceneNo = 2;
+    [SerializeField] int HomePageSceneNo = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +48,7 @@ public class UIController : MonoBehaviour
 
     public void PlayGame()
     {
-        StartCoroutine(LoadScene(PlayBttnSceneNo));
+        StartCoroutine(LoadScene(InstructionSceneNo));
     }
 
     public void QuitGame()
@@ -56,7 +58,7 @@ public class UIController : MonoBehaviour
 
     public void CreditPage()
     {
-        StartCoroutine(LoadScene(CreditBttnSceneNo));
+        StartCoroutine(LoadScene(CreditSceneNo));
     }
 
     IEnumerator LoadScene(int sceneNo)
@@ -75,6 +77,11 @@ public class UIController : MonoBehaviour
 
     public void StartLevel()
     {
-        StartCoroutine(LoadScene(StartLevelSceneNo));
+        StartCoroutine(LoadScene(GameSceneNo));
+    }
+
+    public void BackHomePage()
+    {
+        StartCoroutine(LoadScene(HomePageSceneNo));
     }
 }
