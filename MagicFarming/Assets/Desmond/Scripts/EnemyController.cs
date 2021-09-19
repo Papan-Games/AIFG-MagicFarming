@@ -19,7 +19,7 @@ public class EnemyController : MonoBehaviour
 
     [HeaderAttribute("Components")]
     public Image healthFill;
-    public ParticleSystem dustAttackEffect;
+    public ParticleCollection dustAttackEffect;
 
     [HeaderAttribute("Display Only")]
     [SerializeField] private Transform target;
