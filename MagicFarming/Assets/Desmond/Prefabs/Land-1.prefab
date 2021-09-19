@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.59, y: -1.69}
+  m_AnchoredPosition: {x: -0.47, y: -0.6}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6069227941001043303
@@ -221,7 +221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8388496949921856599
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1111,12 +1111,12 @@ GameObject:
   - component: {fileID: 7662889635787701816}
   - component: {fileID: 6028025921346052921}
   m_Layer: 5
-  m_Name: Rafflesia
+  m_Name: Speed Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1548745465871994794
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1218,7 +1218,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1301650584674033562}
-        m_MethodName: PlantRafflesia
+        m_MethodName: SpeedUpGrowth
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

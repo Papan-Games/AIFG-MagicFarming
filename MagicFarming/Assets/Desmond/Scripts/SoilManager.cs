@@ -102,12 +102,20 @@ public class SoilManager : MonoBehaviour
         if(isPlanting)
         {
             healMenu.SetActive(true);
+            // check whether dust > cost
+            // make button uninteractable
         }
     }
     
     public void HideHealMenu()
     {
         healMenu.SetActive(false);
+    }
+
+    public void SpeedUpGrowth()
+    {
+        timer.timeRemaining -= GameManager.instance.speedUpAmt;
+        GameManager.instance.SpeedUpDustCost();
     }
 
     public void Heal()
