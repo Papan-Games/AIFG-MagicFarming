@@ -9,6 +9,8 @@ public class PetController : MonoBehaviour
     public NavMeshAgent agent;
     public float satisfiedRange;
     private Vector3 calledPosition;
+    public List<Transform> patrolWaypoints;
+    private int currentIndex;
 
     [HeaderAttribute("Stats")]
     public float health = 100;
@@ -26,6 +28,7 @@ public class PetController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentIndex = 0;
         canAttack = true;
         callToPlayer = false;
     }
@@ -66,6 +69,7 @@ public class PetController : MonoBehaviour
             }
             else
             {
+                PetPatrol();
                 FindTargetToPursue();
             }
         }
@@ -74,6 +78,28 @@ public class PetController : MonoBehaviour
             agent.SetDestination(PetManager.instance.butterflyList[0].position);
         }
         
+    }
+
+    public void PetPatrol()
+    {
+        if(CheckDistance(patrolWaypoints[currentIndex].position) < satisfiedRange)
+        {
+            GoToNextWaypoint();
+        }
+
+        agent.SetDestination(patrolWaypoints[currentIndex].position);
+    }
+
+    void GoToNextWaypoint()
+    {
+        if(currentIndex > patrolWaypoints.Count - 1)
+        {
+            currentIndex = 0;
+        }
+        else
+        {
+            currentIndex++;
+        }
     }
 
     [ContextMenu("CallToPlayer")]

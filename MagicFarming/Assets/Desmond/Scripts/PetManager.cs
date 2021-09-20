@@ -6,6 +6,7 @@ public class PetManager : MonoBehaviour
 {
     public static PetManager instance {get; private set;}
 
+    public GameObject petObj;
     public List<Transform> targetList;
     public List<Transform> butterflyList;
 
